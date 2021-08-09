@@ -6,8 +6,8 @@ async function init() {
   const video = document.getElementById('video');
   const ui = video['ui'];
   const config = {
-    addSeekBar: false
-  };
+    'controlPanelElements': ['rewind', 'fast_forward']
+  }
   ui.configure(config);
   // const controls = ui.getControls();
   const player = controls.getPlayer();
