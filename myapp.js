@@ -2,12 +2,15 @@ const manifestUri =
     'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
 
 async function init() {
+  // When using the UI, the player is made automatically by the UI object.
   const video = document.getElementById('video');
   const ui = video['ui'];
   const config = {
     addSeekBar: false
   };
   ui.configure(config);
+  // const controls = ui.getControls();
+  const player = controls.getPlayer();
 
   // Attach player and ui to the window to make it easy to access in the JS console.
   window.player = player;
