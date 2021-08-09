@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <!-- Closure base:
-    <script src="node_modules/google-closure-library/closure/goog/base.js"></script>
-    Deps file:
-    <script src="dist/deps.js"></script> -->
-    <!-- Shaka Player uncompiled library:
-    <script src="shaka-player/shaka-player.uncompiled.js"></script> -->
-    <!-- Shaka Player compiled library: -->
-    <script src="dist/shaka-player.compiled.js"></script>
+    <!-- Shaka Player ui compiled library: -->
+    <script src="dist/shaka-player.ui.js"></script>
+    <!-- Shaka Player ui compiled library default CSS: -->
+    <link rel="stylesheet" type="text/css" href="dist/controls.css">
+    <!-- Chromecast SDK (if you want Chromecast support for your app): -->
+    <script defer src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
     <!-- Your application source: -->
     <script src="myapp.js"></script>
   </head>
   <body>
-    <video id="video"
-           width="640"
-           poster="https://play-lh.googleusercontent.com/NvVT-ZaCH8mLm3GsIezO9xEnxo57YtvkHWnrkmBPJaicFqbu2K9Nk8eDyf7UinOtuPM"
-           controls autoplay muted></video>
+    <div data-shaka-player-container style="max-width:40em"
+         data-shaka-player-cast-receiver-id="1BA79154">
+      <video autoplay data-shaka-player id="video" style="width:100%;height:100%">
+        <!-- Try this first -->
+        <source src="https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd"/>
+        <!-- Try this if the first one has failed -->
+        <source src="https://storage.googleapis.com/shaka-demo-assets/angel-one-hls-apple/master.m3u8"/>
+      </video>
+    </div>
   </body>
 </html>
