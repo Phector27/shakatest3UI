@@ -3,10 +3,22 @@ const manifestUri =
 
 async function init() {
   // When using the UI, the player is made automatically by the UI object.
-  const video = document.getElementById('video');
-  const ui = video['ui'];
-  const controls = ui.getControls();
-  const player = controls.getPlayer();
+// "local" because it is for local playback only, as opposed to the player proxy
+// object, which will route your calls to the ChromeCast receiver as necessary.
+const localPlayer = new shaka.Player(videoElement);
+// "Overlay" because the UI will add DOM elements inside the container,
+// to visually overlay the video element
+const ui = new shaka.ui.Overlay(localPlayer, videoContainerElement,
+  videoElement);
+
+// As with DOM-based setup, get access to the UI controls and player from the
+// UI.
+const controls = ui.getControls();
+
+// These are cast-enabled proxy objects, so that when you are casting,
+// your API calls will be routed to the remote playback session.
+const player = controls.getPlayer();
+const video = controls.getVideo();
 
   // Attach player and ui to the window to make it easy to access in the JS console.
   window.player = player;
